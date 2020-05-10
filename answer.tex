@@ -1,0 +1,179 @@
+\documentclass[uplatex,b5paper]{jsarticle}
+\usepackage{bm}
+\usepackage{empheq}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bxpapersize}
+\usepackage{kyotoexmath}
+
+\setfootmark{天輝主/Gω3}
+\title{第 n 回}
+\subject{計 算 \(+\alpha\) テ ス ト \\\vspace{.5cm} 略 解}
+\setprereadme{ﾃﾞﾘﾝｼﾞｬ-なら満点取れるテスト}
+\setscoresum6
+\setreadme{
+  \begin{enumerate}
+    \item 電卓等の使用は禁止です.
+    \item 途中経過は採点対象にしません.
+    \item 今回の制限時間は20分です.
+    \item 問題数は3問です.
+    \item 計算テストと捉えるには少しマイナーな問題となっております.
+    \item 終了後に, 私のDMに解答を送ってください. 訂正は受け付けません. 即座に採点し, 平均点と成績優秀者を発表します.
+    \item 今回の作問者は{\it @天輝主\#3141}, アドバイザーは{\it @らむぞー\#5342},{\it @雪葉\#3875}です.
+    \item 本家計算テストにて作問者募集されてます. 有志の方々は{\it @mameshiba!\#2047}さんにお声がけください.
+  \end{enumerate}
+}
+\begin{document}
+\maketitle
+
+\begin{prob}3
+  次の漸化式で定義された数列 \(\{a_n\}\) の一般項を求めよ.
+  \[a_{n+2} - 2a_{n+1} + a_n = n\cdot2^n - {}_n\mathrm C_4\]
+  ただし \(a_1 = a_2 = 0\) であり, \(n<m\)のときの \({}_n\mathrm C_m = 0\) と定義する.
+
+  \vspace{2cm}
+  まず \(n\geq2\) についての一般項を考える.
+
+  以下の恒等式を変形していく.
+  \begin{eqnarray*}
+    1+x+x^2+\cdots+x^n &=& \frac{x^{n+1}-1}{x-1}\\
+    x+2x^2+3x^3+\cdots+nx^n &=& x\cdot\frac d{dx}\left(\frac{x^{n+1}-1}{x-1}\right)
+  \end{eqnarray*}
+  よって \(x=2\) として計算して,
+  \[\sum_{k=1}^{n-1}k\cdot2^k=(n-2)\cdot2^n+2\]
+  がわかる.
+
+  さて, 漸化式より,
+  \begin{eqnarray*}
+    (a_{n+2}-a_{n+1})-(a_{n+1}-a_n) &=& n\cdot2^n-{}_n\mathrm C_4\\
+    \sum_{k=1}^{n-1}\left((a_{k+2}-a_{k+1})-(a_{k+1}-a_k)\right) &=& \sum_{k=1}^{n-1}\left(k\cdot2^k-{}_k\mathrm C_4\right)\\
+    a_{n+1}-a_n &=& (n-2)\cdot2^n+2-{}_n\mathrm C_5\\
+    \sum_{k=1}^{n-1}(a_{k+1}-a_k) &=& \sum_{k=1}^{n-1}\left(k\cdot2^k-2^{k+1}+2-{}_k\mathrm C_5\right)\\
+    a_n &=& (n-2)\cdot2^n+2-4(2^n-1)+2(n-1)-{}_n\mathrm C_6\\
+        &=& (n-4)\cdot2^n+2n+4-{}_n\mathrm C_6\\
+  \end{eqnarray*}
+   \[\Bigl(= (n-4)\cdot2^n-\frac{n^7}{720}+\frac{7n^6}{240}-\frac{35n^5}{144}+\frac{49n^4}{48}-\frac{203n^3}{90}+\frac{49n^2}{20}+n+4\Bigr)\]
+  \[\Bigl(= (n-4)\cdot2^n-\frac1{720}(n^7-21n^6+175n^5-735n^4+1624n^3-1764n^2-720n-2880)\Bigr)\]
+
+  \(n=1\) でもこれでよい.
+\end{prob}
+\newpage
+
+\begin{prob}2
+  \(xyz\)直交座標系において,
+  \[(3,1,4), (1,5,9), (2,6,5), (3,5,8)\]
+  を4頂点とする四面体の体積を求めよ.
+
+  \vspace{2cm}
+  四面体をつくる3ベクトルは以下.
+  \[(0,4,4), (2,0,-1), (1,-1,3)\]
+  ただし四面体は等積変形した.
+  それぞれ \(\bm A,\bm B,\bm C\) とする.
+
+  \(\bm A,\bm C\) がつくる三角形を \(S\) とすると,
+  大きさが \(S\) の面積に等しく
+  \(S\) に垂直なベクトル \(S\bm n\) は,
+  (\(\bm n\)を単位ベクトルとする)
+  \[S\bm n=\frac12
+    \left(
+      \begin{array}{ccc}
+        4\\-8\\8
+      \end{array}
+    \right)
+    =
+    \left(
+      \begin{array}{ccc}
+        2\\-4\\4
+      \end{array}
+    \right)
+  \]
+  \[
+    \left(
+      \begin{cases}
+        |S\bm n|=\frac12\sqrt{|\bm B|^2|\bm C|^2-(\bm B\cdot\bm C)^2}\\
+        S\bm n\cdot\bm B=S\bm n\cdot\bm C=0
+      \end{cases}
+      \text{は簡単な計算によって確かめられる}
+    \right)
+  \]
+  ( \(S\bm n\) は計算用紙では外積によって計算する )
+
+  \(S\) を底面とした高さを\(h\)とすると,
+  \[h=|(1,-1,3)\cdot \bm n|\]
+
+  よって求める体積 \(V\) は
+  \[V=\frac13Sh
+    = \frac13S\cdot\left|
+    \left(
+      \begin{array}{ccc}
+        1\\-1\\3
+      \end{array}
+    \right)
+      \cdot\bm n\right|
+    = \frac13\left|
+    \left(
+      \begin{array}{ccc}
+        1\\-1\\3
+      \end{array}
+    \right)
+      \cdot S\bm n\right|
+    = \frac13\left|
+    \left(
+      \begin{array}{ccc}
+        1\\-1\\3
+      \end{array}
+    \right)
+    \cdot
+    \left(
+      \begin{array}{ccc}
+        2\\-4\\4
+      \end{array}
+    \right)\right|
+    =6
+  \]
+\end{prob}
+\newpage
+
+\begin{prob}1
+  三次方程式
+  \[2x^3+3x^2-6x-k=0\]
+  の異なる実数解の個数を求めよ.
+
+  \vspace{2cm}
+  \[f: x \mapsto 2x^3+3x^2-6x\]
+  極大値と極小値を取る \(x\) をそれぞれ \(s,t\quad(s<t)\) とする.
+  \[f'(x)=6(x^2+x-1)\]
+  であるが, \(s,t\) は \(f'(s)=f'(t)=0\) を満足する.
+
+  三次関数の点対称性より,
+  極大点と極小点の中点は与式の曲線を通る.
+  \begin{eqnarray*}
+    f(s)+f(t) &=& 2\cdot f\left(\frac{s+t}2\right)\\
+              &=& 2\cdot f\left(-\frac12\right)\\
+              &=& 7
+  \end{eqnarray*}
+
+  \begin{eqnarray*}
+    f(s)-f(t) &=& \int_t^sf'(x)dx\\
+              &=& \int_t^s6(x^2+x-1)dx\\
+              &=& 6\cdot\int_t^s(x-s)(x-t)dx\\
+              &=& 6\cdot\frac16(t-s)^3\\
+              &=& (t-s)^3\\
+              &=& \left(\sqrt5\right)^3\\
+              &=& 5\sqrt5
+  \end{eqnarray*}
+
+  連立して,
+  \[\text{極大値は}\ \frac{7+5\sqrt5}2,\quad\text{極小値は}\ \frac{7-5\sqrt5}2\]
+
+  以上より
+  \begin{eqnarray*}
+      \begin{cases}
+        \text{1つ} &\left(\displaystyle k<\frac{7-5\sqrt5}2\ \text{または}\ k>\frac{7+5\sqrt5}2 \right)\\
+        \text{2つ} &\left(\displaystyle k=\frac{7-5\sqrt5}2\ \text{または}\ k=\frac{7+5\sqrt5}2 \right)\\
+        \text{3つ} & \left(\displaystyle \frac{7-5\sqrt5}2<k<\frac{7+5\sqrt5}2 \right)
+      \end{cases}
+  \end{eqnarray*}
+
+\end{prob}
+\end{document}

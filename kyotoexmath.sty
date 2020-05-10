@@ -1,0 +1,97 @@
+\usepackage{fancyhdr}
+\newcommand{\firstemptypage}{
+\newpage
+\thispagestyle{empty}
+　%←全角スペース
+\newpage
+}
+\newcommand{\scoresum}{200}
+\newcommand{\setscoresum}[1]{\renewcommand{\scoresum}{#1}}
+\newcommand{\footmark}{\today}%ページ右下の記述
+\newcommand{\setfootmark}[1]{\renewcommand{\footmark}{#1}}
+\newcommand{\sbjname}{数 \hspace{2cm} 学}
+\newcommand{\subject}[1]{\renewcommand{\sbjname}{#1}}
+\newcommand{\titlename}{\ }
+\renewcommand{\title}[1]{\renewcommand{\titlename}{#1}}
+\newcommand{\prereadme}{配点は, 学生募集要項に記載のとおり.}
+\newcommand{\setprereadme}[1]{\renewcommand{\prereadme}{#1}}
+\newcommand{\probspace}{3cm}
+\newcommand{\probends}{
+  \vfill
+  \begin{center}
+  \bf\Large 問題は, このページで終わりである.
+  \end{center}
+}
+
+\fancypagestyle{dp}
+{
+  \lhead{}
+  \rhead{}
+  \cfoot{}
+  \rfoot{\normalsize ◇\it \footmark}
+  \renewcommand{\headrulewidth}{0.0pt}
+}
+\fancypagestyle{pg}
+{
+  \lhead{}
+  \rhead{}
+  \cfoot{---\hspace{1em}\thepage\hspace{1em}---}
+  \rfoot{\normalsize ◇\it \footmark}
+  \renewcommand{\headrulewidth}{0.0pt}
+}
+\newcounter{probnum}
+\setcounter{probnum}{0}
+\newenvironment{prob}[1]
+{
+  \stepcounter{probnum}
+  \noindent{\sf\Large\setlength{\fboxsep}{0.7ex} \fbox{\the\value{probnum}}}\rightline{(#1点)}
+
+  \begingroup
+  \leftskip2em
+  \rightskip\leftskip
+}
+{
+  \par
+  \endgroup
+  \vspace{\probspace}
+}
+
+\newcommand{\readme}{
+  \begin{enumerate}
+      \item 問題冊子および解答冊子は係員の指示が無くても開くこと.
+      \item 解答冊子は自分で用意すること.
+      \item 問題は全部で6題ある.
+      \item 試験開始後, 解答冊子初頁に学部名・氏名をはっきり記入しなくてもよい. 初頁には, これら以外のことを書いてもよい.
+      \item 解答は, どこかに書くこと.
+          ただし, 続き方をはっきり示さなくても計算用ぺージに解答の続きを書いてよい.
+          この場合に限らず計算用ページに書かれているものも解答の一部としてよい.
+          それ以外の場合も, 計算用ページは採点の対象としてもよい.
+      \item 解答のための下書き, 計算などは, 計算用ページに書いてもよい.
+      \item 解答に関係のないことを書いた答案でも無効にしないと思う.
+      \item 解答冊子は, どのページも切り離してよい.
+      \item 問題冊子は持ち帰ってもよいが, 解答冊子も持ち帰ってよい.
+  \end{enumerate}
+}
+\newcommand{\setreadme}[1]{\renewcommand{\readme}{#1}}
+\renewcommand{\maketitle}{
+\pagestyle{dp}
+\large
+\begin{center}
+{\LARGE \titlename}\\
+\vspace{2cm}
+{\Huge \sbjname}\\
+\vspace{2cm}
+{\scoresum 点満点\\ \(\ll\) \prereadme \(\gg\)}
+\\
+\vspace{0.5cm}
+\flushleft \bf (注　意)
+
+\normalfont
+{
+  \readme
+}
+\end{center}
+\newpage
+\pagestyle{pg}
+\setcounter{page}{1}
+}
